@@ -84,9 +84,9 @@ export default {
   build: {},
 
   /*
-  ** Application Port
-  */
+   ** Application Port
+   */
   server: {
-    port: 3050 // default: 3000
+    port: 3050, // default: 3000
   },
 }
