@@ -1,2 +1,3 @@
 !.storybook
 !.jest
+cypress/support/index.d.ts
