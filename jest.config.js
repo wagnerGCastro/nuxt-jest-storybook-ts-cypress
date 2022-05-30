@@ -12,7 +12,7 @@ module.exports = {
     '.*\\.(vue)$': 'vue-jest',
   },
   collectCoverage: true,
-  collectCoverageFrom: ['<rootDir>/components/**/*.vue', '<rootDir>/pages/**/*.vue'],
+  collectCoverageFrom: ['<rootDir>/src/components/**/*.vue', '<rootDir>/src/pages/**/*.vue', '<rootDir>/src/utils/**/*.{js,ts}'],
   testEnvironment: 'jsdom',
   preset: 'ts-jest',
   testPathIgnorePatterns: [
