@@ -1,3 +1,6 @@
 !.storybook
 !.jest
+
 __cypress__/support/index.d.ts
+/__cypress__/support/index.d.ts
+__cypress__\support\index.d.ts

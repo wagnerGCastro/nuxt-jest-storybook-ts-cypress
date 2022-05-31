@@ -22,8 +22,21 @@
       "@nuxt/content",
       "@types/node",
       "cypress",
-      "@testing-library/cypress"
+      "@testing-library/cypress",
+      "@types/jest"
     ]
   },
-  "exclude": ["node_modules", ".nuxt", "dist", "cypress"]
+  "exclude": [
+    "node_modules",
+    "_node_modules",
+    "__node_modules",
+    ".nuxt",
+    "dist",
+    "cypress",
+    "__cypress__",
+    "tests",
+    "__tests__",
+    "stories",
+    "__stories__"
+  ]
 }
