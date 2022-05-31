@@ -19,7 +19,7 @@ describe('Cart', () => {
 
   describe('getTotal()', () => {
     it('should return 0 when getTotal() is executed in a newly created instance', () => {
-      expect(cart.getTotal()).toEqual(0)
+      expect(cart.getTotal().getAmount()).toEqual(0)
     })
 
     it('should multiply quantity and price and receive the toatal amount', () => {
@@ -32,7 +32,7 @@ describe('Cart', () => {
       }
 
       cart.add(item)
-      expect(cart.getTotal()).toEqual(70776)
+      expect(cart.getTotal().getAmount()).toEqual(70776)
     })
 
     it('should ensure no more than on product exists at a time', () => {
@@ -46,7 +46,7 @@ describe('Cart', () => {
         quantity: 1,
       })
 
-      expect(cart.getTotal()).toEqual(35388)
+      expect(cart.getTotal().getAmount()).toEqual(35388)
     })
 
     it('should update total when a product gets included and then removed', () => {
@@ -62,7 +62,7 @@ describe('Cart', () => {
 
       cart.remove(product)
 
-      expect(cart.getTotal()).toEqual(41872)
+      expect(cart.getTotal().getAmount()).toEqual(41872)
     })
   })
 
@@ -93,7 +93,22 @@ describe('Cart', () => {
       })
 
       expect(cart.summary()).toMatchSnapshot()
-      expect(cart.getTotal()).toBeGreaterThan(0)
+      expect(cart.getTotal().getAmount()).toBeGreaterThan(0)
+    })
+
+    it('should include formatted amount in the summary', () => {
+      cart.add({
+        product,
+        quantity: 5,
+      })
+
+      cart.add({
+        product: product2,
+        quantity: 3,
+      })
+
+      expect(cart.summary()).toMatchSnapshot()
+      expect(cart.getTotal().getAmount()).toBeGreaterThan(0)
     })
 
     it('should reset the cart when checkout() is called', () => {
@@ -104,7 +119,90 @@ describe('Cart', () => {
 
       cart.checkout()
 
-      expect(cart.getTotal()).toEqual(0)
+      expect(cart.getTotal().getAmount()).toEqual(0)
+    })
+  })
+
+  describe('Special Conditions', () => {
+    it('should apply percentage discount quantity above minimum is passed', () => {
+      const condition = {
+        percentage: 30,
+        minimum: 2,
+      }
+
+      cart.add({
+        product,
+        condition,
+        quantity: 3,
+      })
+
+      expect(cart.getTotal().getAmount()).toEqual(74315)
+    })
+
+    it('should apply quantity discount for even quantities', () => {
+      const condition = {
+        quantity: 2,
+      }
+
+      cart.add({
+        product,
+        condition,
+        quantity: 4,
+      })
+
+      expect(cart.getTotal().getAmount()).toEqual(70776)
+    })
+
+    it('should apply quantity discount for odd quantities', () => {
+      const condition = {
+        quantity: 2,
+      }
+
+      cart.add({
+        product,
+        condition,
+        quantity: 5,
+      })
+
+      expect(cart.getTotal().getAmount()).toEqual(106164)
+    })
+
+    it('should receive two or more conditions and determine/apply the best discount. First case.', () => {
+      const condition1 = {
+        percentage: 30,
+        minimum: 2,
+      }
+
+      const condition2 = {
+        quantity: 2,
+      }
+
+      cart.add({
+        product,
+        condition: [condition1, condition2],
+        quantity: 5,
+      })
+
+      expect(cart.getTotal().getAmount()).toEqual(106164)
+    })
+
+    it('should receive two or more conditions and determine/apply the best discount. Second case.', () => {
+      const condition1 = {
+        percentage: 80,
+        minimum: 2,
+      }
+
+      const condition2 = {
+        quantity: 2,
+      }
+
+      cart.add({
+        product,
+        condition: [condition1, condition2],
+        quantity: 5,
+      })
+
+      expect(cart.getTotal().getAmount()).toEqual(35388)
     })
   })
 })
