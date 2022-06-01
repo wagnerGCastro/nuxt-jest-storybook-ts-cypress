@@ -1,4 +1,4 @@
-const path = require('path')
+const path = require('path');
 
 module.exports = {
   stories: ['../__stories__/**/*.stories.mdx', '../__stories__/**/*.stories.@(js|ts)'],
@@ -25,7 +25,7 @@ module.exports = {
     config.resolve.alias = {
       ...config.resolve.alias,
       '@': path.resolve(__dirname, '../src/'),
-    }
+    };
 
     // config.module.rules.push({
     //   test: /\.scss$/,
@@ -33,6 +33,6 @@ module.exports = {
     //   include: path.resolver(__dirname, '../')
     // })
 
-    return config
+    return config;
   },
-}
+};

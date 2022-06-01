@@ -1,4 +1,4 @@
-import colors from 'vuetify/es5/util/colors'
+import colors from 'vuetify/es5/util/colors';
 
 export default {
   srcDir: 'src/',
@@ -89,4 +89,4 @@ export default {
   server: {
     port: 3050, // default: 3000
   },
-}
+};
