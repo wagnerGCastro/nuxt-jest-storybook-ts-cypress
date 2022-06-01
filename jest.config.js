@@ -39,4 +39,4 @@ module.exports = {
     '/build/',
   ],
   transformIgnorePatterns: ['<rootDir>/node_modules/'],
-}
+};
