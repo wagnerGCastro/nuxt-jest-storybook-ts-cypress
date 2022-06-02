@@ -1,6 +1,7 @@
 // load type definitions from Cypress module
 /// <reference types="cypress" />
 
+// eslint-disable-line
 declare namespace Cypress {
   interface Chainable {
     /**
