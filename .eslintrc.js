@@ -9,5 +9,18 @@ module.exports = {
   // add your custom rules here
   rules: {
     '@typescript-eslint/no-namespace': 'off',
+
+    'vue/component-tags-order': [
+      'error',
+      {
+        order: ['template', 'script', 'style'],
+      },
+    ],
+    'vue/multi-word-component-names': [
+      'error',
+      {
+        ignores: ['Search'],
+      },
+    ],
   },
 };
