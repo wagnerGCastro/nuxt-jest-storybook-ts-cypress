@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <v-card class="card-product">
     <v-img
       lazy-src="https://picsum.photos/id/11/10/6"
       src="https://picsum.photos/id/11/500/300"
@@ -35,7 +35,7 @@ export default {
 </script>
 
 <style scoped>
-.v-card__title.headline {
+.card-product .v-card__title.headline {
   font-size: 15px !important;
   line-height: 1.3rem;
   text-transform: uppercase;
@@ -43,25 +43,24 @@ export default {
   padding-bottom: 5px !important;
 }
 
-.vcard-actions {
+.card-product .vcard-actions {
   margin: -30px -41px 0 78%;
   display: flex;
   justify-content: center;
   max-width: 40px;
 }
 
-.v-btn.cart-btn {
+.card-product .v-btn.cart-btn {
   height: 36px;
   width: 36px;
   border-radius: 50%;
 }
 
-.v-btn.cart-btn svg {
+.card-product .v-btn.cart-btn svg {
   height: 20px;
 }
 
-.v-btn:not(.v-btn--round).v-size--default {
+.card-product .v-btn:not(.v-btn--round).v-size--default {
   min-width: auto;
 }
 </style>
->
