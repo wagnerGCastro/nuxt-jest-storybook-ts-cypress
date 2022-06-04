@@ -1,5 +1,5 @@
 <template>
-  <v-app dark>
+  <v-app dark class="layout-default">
     <!-- NavBar Left -->
     <v-navigation-drawer v-model="drawer" :mini-variant="miniVariant" :clipped="clipped" fixed app>
       <v-list>
@@ -30,8 +30,10 @@
 
       <v-spacer />
 
-      <v-btn icon @click.stop="rightDrawer = !rightDrawer">
-        <v-icon dense class="icon">mdi-cart-outline</v-icon>
+      <v-btn class="default-layout__btn-cart" icon @click.stop="rightDrawer = !rightDrawer">
+        <v-badge content="6" bordered bottom color="blue darken-1" offset-x="10" offset-y="10">
+          <v-icon dense class="icon">mdi-cart-outline</v-icon>
+        </v-badge>
       </v-btn>
     </v-app-bar>
 
@@ -43,15 +45,24 @@
     </v-main>
 
     <!-- Draer Cart Right  -->
-    <v-navigation-drawer v-model="rightDrawer" :right="right" temporary fixed>
+    <v-navigation-drawer v-model="rightDrawer" :right="right" width="300" temporary fixed>
       <v-list>
-        <v-list-item @click.native="right = !right">
+        <v-list-item>
           <v-list-item-action>
-            <v-icon light> mdi-repeat </v-icon>
+            <v-btn icon title="close">
+              <v-icon light>mdi-close</v-icon>
+            </v-btn>
           </v-list-item-action>
-          <v-list-item-title>Switch drawer (click me)</v-list-item-title>
+          <v-list-item-title class="text-left">Clear all products (10)</v-list-item-title>
+          <v-list-item-action>
+            <v-btn icon title="clear">
+              <v-icon light>mdi-trash-can-outline</v-icon>
+            </v-btn>
+          </v-list-item-action>
         </v-list-item>
       </v-list>
+
+      <cart></cart>
     </v-navigation-drawer>
 
     <!-- Footer -->
@@ -63,9 +74,11 @@
 
 <script>
 import Search from '~/components/Search.vue';
+import Cart from '~/components/Cart.vue';
+
 export default {
   name: 'DefaultLayout',
-  components: { Search },
+  components: { Search, Cart },
   data() {
     return {
       clipped: true,
@@ -96,3 +109,36 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.layout-default .v-list {
+  padding: 8px 0;
+}
+
+.v-list-item__action {
+  margin: 1px;
+}
+
+.default-layout__btn-cart {
+  border: 1px solid #aaa;
+  margin-right: -5px !important;
+  height: 38px !important;
+  width: 38px !important;
+}
+
+.v-badge__badge {
+  border-radius: 10px;
+  color: #fff;
+  display: inline-block;
+  font-size: 10px !important;
+  height: 10px;
+  line-height: 1;
+  min-width: 10px !important;
+  padding: 4px 6px;
+  pointer-events: auto;
+  position: absolute;
+  top: auto;
+  transition: 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
+  white-space: nowrap;
+}
+</style>
