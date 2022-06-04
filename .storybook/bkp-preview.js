@@ -1,11 +1,11 @@
-import { configure } from '@storybook/vue'
-import { withKnobs } from '@storybook/addon-knobs'
-import Vuetify from 'vuetify'
-import 'vuetify/dist/vuetify.min.css'
+import { configure } from '@storybook/vue';
+import { withKnobs } from '@storybook/addon-knobs';
+import Vuetify from 'vuetify';
+import 'vuetify/dist/vuetify.min.css';
 
-Vue.use(Vuetify)
+Vue.use(Vuetify);
 
-configure(require.context('../', true, /\.stories\.ts$/), module)
+configure(require.context('../', true, /\.stories\.ts$/), module);
 
 const vuetifyDecorator = () => ({
   vuetify,
@@ -19,11 +19,11 @@ const vuetifyDecorator = () => ({
   watch: {
     vuetifyDark: {
       handler() {
-        this.$vuetify.theme.dark = this.vuetifyDark
+        this.$vuetify.theme.dark = this.vuetifyDark;
       },
       immediate: true,
     },
   },
-})
+});
 
-addDecorator([vuetifyDecorator, withKnobs])
+addDecorator([vuetifyDecorator, withKnobs]);

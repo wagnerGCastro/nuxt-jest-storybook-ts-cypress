@@ -15,10 +15,10 @@ export default {
   },
   methods: {
     onClick() {
-      this.$emit('click')
+      this.$emit('click');
     },
   },
-}
+};
 </script>
 
 <style scoped>
