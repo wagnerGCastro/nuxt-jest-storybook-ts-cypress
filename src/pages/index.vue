@@ -1,12 +1,13 @@
 <template>
   <v-row align="center">
-    <v-col v-for="(p, i) in 7" :key="i" cols="3" sm="8" md="3">
-      <card-product />
+    <v-col v-for="(prod, i) in products" :key="i" cols="3" sm="8" md="3">
+      <card-product :product="prod" />
     </v-col>
   </v-row>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import CardProduct from '@/components/CardProduct';
 
 export default {
@@ -14,16 +15,20 @@ export default {
   components: {
     CardProduct,
   },
-
   data() {
     return {
-      products: [],
       errorMessage: '',
       searchTerm: '',
     };
   },
-  computed: {},
-  async created() {},
+  computed: {
+    ...mapGetters({
+      products: 'cart/itemsState',
+    }),
+  },
+  created() {
+    // console.log('items', this.products);
+  },
   methods: {},
 };
 </script>
