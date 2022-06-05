@@ -31,7 +31,14 @@
       <v-spacer />
 
       <v-btn class="default-layout__btn-cart" icon @click.stop="rightDrawer = !rightDrawer">
-        <v-badge content="6" bordered bottom color="blue darken-1" offset-x="10" offset-y="10">
+        <v-badge
+          :content="qtdCart"
+          bordered
+          bottom
+          color="blue darken-1"
+          offset-x="10"
+          offset-y="10"
+        >
           <v-icon dense class="icon">mdi-cart-outline</v-icon>
         </v-badge>
       </v-btn>
@@ -53,7 +60,9 @@
               <v-icon light>mdi-close</v-icon>
             </v-btn>
           </v-list-item-action>
-          <v-list-item-title class="text-left">Clear all products (10)</v-list-item-title>
+          <v-list-item-title class="text-left"
+            >Clear all products ({{ qtdCart }})</v-list-item-title
+          >
           <v-list-item-action>
             <v-btn icon title="clear">
               <v-icon light>mdi-trash-can-outline</v-icon>
@@ -73,6 +82,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import Search from '~/components/Search.vue';
 import Cart from '~/components/Cart.vue';
 
@@ -100,7 +110,18 @@ export default {
       right: true,
       rightDrawer: false,
       title: 'Produtos',
+      qtdCart: '0',
     };
+  },
+  computed: {
+    ...mapGetters({
+      qtdProducts: 'cart/qtdProducts',
+    }),
+  },
+  watch: {
+    qtdProducts(newTotal) {
+      return (this.qtdCart = Number(newTotal) ?? '0');
+    },
   },
 };
 </script>

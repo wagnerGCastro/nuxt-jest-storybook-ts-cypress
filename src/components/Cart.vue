@@ -2,14 +2,11 @@
   <div class="component-cart">
     <hr class="space-hr mb-6" />
 
-    <v-row v-for="(p, idx) in 5" :key="idx" no-gutters class="mb-3">
+    <v-row v-for="(p, idx) in products" :key="idx" no-gutters class="mb-3">
       <v-col cols="4" class="mb-4">
         <div class="box-image">
           <v-card outlined>
-            <v-img
-              lazy-src="https://picsum.photos/id/11/10/6"
-              src="https://picsum.photos/id/11/500/300"
-            ></v-img>
+            <v-img lazy-src="https://picsum.photos/id/11/10/6" :src="p.image"></v-img>
           </v-card>
           <button data-testid="remove-button" class="remove-product">X</button>
         </div>
@@ -17,8 +14,8 @@
 
       <v-col cols="8">
         <div class="d-flex items-center">
-          <div class="ml-3">
-            <h3 class="title-product">DISTINCTIO EXCEPTURI3434 DOLORUM</h3>
+          <div style="width: 100%" class="ml-3">
+            <h3 class="title-product">{{ p.title }}</h3>
             <div class="d-flex items-center justify-space-between mt-1">
               <div class="d-flex items-center">
                 <svg
@@ -48,7 +45,7 @@
                 </svg>
               </div>
 
-              <span class="price">R$ 80,00</span>
+              <span class="price">R$ {{ p.price }}</span>
             </div>
           </div>
         </div>
@@ -74,12 +71,19 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
   name: 'Cart',
   data() {
     return {
       //
     };
+  },
+  computed: {
+    ...mapGetters({
+      products: 'cart/productsState',
+    }),
   },
   watch: {
     //
@@ -106,19 +110,20 @@ export default {
 .component-cart .remove-product {
   position: absolute;
   top: -7px;
-  border: 1px solid #988;
+  border: 2px solid #fff;
   border-radius: 37px;
-  height: 16px;
-  width: 16px;
+  height: 22px;
+  width: 22px;
   font-size: 10px;
   line-height: 5px;
   left: -8px;
-  color: #939393;
+  color: #fff;
+  background: #e74e4e;
+  z-index: 1;
 }
 
 .component-cart .remove-product:hover {
-  border: 1px solid #494242;
-  color: #494242;
+  background: #cf3131;
 }
 
 .component-cart .v-btn__button {
@@ -126,7 +131,7 @@ export default {
 }
 
 .component-cart .title-product {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 400;
 }
 
