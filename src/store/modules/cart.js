@@ -35,6 +35,8 @@ export const cart = {
   state: {
     open: false,
     products: [],
+    qtdProducts: 0,
+    totalProducts: 0,
     items,
   },
 
@@ -42,39 +44,88 @@ export const cart = {
     setProduct(state, product) {
       state.products = [...state.products, product];
     },
-    removeProduct(state, products) {
+    updateProducts(state, products) {
       state.products = products;
     },
-    removeProductAll(state) {
+    updateDecOrIncProduct(state, { product, type }) {
+      state.products = state.products.map((item) => {
+        if (item.id === product.id) {
+          let qtd = item.qtd;
+
+          if (type === 'decrease') {
+            if (Number(item.qtd) > 1) {
+              qtd = Number(item.qtd) - 1;
+            }
+          } else {
+            qtd = Number(item.qtd) + 1;
+          }
+
+          item.qtd = qtd;
+          item.total = qtd * Number(item.price);
+        }
+
+        return item;
+      });
+    },
+    removeProductsAll(state) {
       state.products = [];
+      state.qtdProducts = 0;
+      state.totalProducts = 0;
+    },
+    setSumCartProducts(state, { qtd, total }) {
+      state.qtdProducts = qtd;
+      state.totalProducts = total;
     },
   },
 
   getters: {
     productsState: (state) => state.products,
     qtdProducts: (state) => Object.keys(state.products).length,
+    qtdProductsState: (state) => state.qtdProducts,
+    totalProductsState: (state) => state.totalProducts,
     itemsState: (state) => state.items,
   },
 
   actions: {
-    async add({ dispatch, commit }, product) {
+    async add({ commit, dispatch }, product) {
       // if not exist product
       if (!(await dispatch('productExistCart', product))) {
-        commit('setProduct', product);
+        const prod = { ...product, qtd: 1, total: product.price };
+        commit('setProduct', prod);
+        dispatch('sumCartProducts');
       }
     },
 
-    remove({ state, commit }, productId) {
-      const products = [state.products.filter((product) => product.id !== productId)];
-      commit('removeProduct', products);
+    removeProduct({ state, commit, dispatch }, productId) {
+      const products = state.products.filter((product) => product.id !== productId);
+      commit('updateProducts', products);
+      dispatch('sumCartProducts');
     },
 
-    clear({ commit }) {
-      commit('removeProductAll');
+    clearAllProducts({ commit }) {
+      commit('removeProductsAll');
     },
 
     productExistCart({ state }, product) {
       return state.products.find(({ id }) => id === product.id);
+    },
+
+    decraseOrIncreaseProduct({ commit, dispatch }, { product, type }) {
+      commit('updateDecOrIncProduct', { product, type });
+      dispatch('sumCartProducts');
+    },
+
+    sumCartProducts({ state, commit }) {
+      let qtd = 0;
+      let total = 0;
+      if (state.products.length > 0) {
+        state.products.forEach((product) => {
+          qtd += Number(product.qtd);
+          total += Number(product.total);
+        });
+
+        commit('setSumCartProducts', { qtd, total });
+      }
     },
   },
 };

@@ -1,6 +1,6 @@
 <template>
   <v-row align="center">
-    <v-col v-for="(prod, i) in products" :key="i" cols="3" sm="8" md="3">
+    <v-col v-for="(prod, i) in products" :key="i" cols="12" sm="4" md="3">
       <card-product :product="prod" />
     </v-col>
   </v-row>
