@@ -60,18 +60,26 @@
               <v-icon light>mdi-close</v-icon>
             </v-btn>
           </v-list-item-action>
-          <v-list-item-title class="text-left"
-            >Clear all products ({{ qtdCart }})</v-list-item-title
-          >
-          <v-list-item-action>
-            <v-btn icon title="clear">
-              <v-icon light>mdi-trash-can-outline</v-icon>
-            </v-btn>
-          </v-list-item-action>
+
+          <div v-if="qtdCart !== '0'" class="d-flex">
+            <v-list-item-title class="text-left">
+              Clear all products ({{ qtdCart }})
+            </v-list-item-title>
+            <v-list-item-action>
+              <v-btn icon title="clear" @click.prevent="clearAllProducts">
+                <v-icon light>mdi-trash-can-outline</v-icon>
+              </v-btn>
+            </v-list-item-action>
+          </div>
         </v-list-item>
       </v-list>
 
-      <cart></cart>
+      <cart v-show="qtdCart !== '0'"></cart>
+
+      <div v-show="qtdCart == '0'">
+        <v-list-item-action> </v-list-item-action>
+        <h3 class="text-center text--secondary">No products in cart (-_-)</h3>
+      </div>
     </v-navigation-drawer>
 
     <!-- Footer -->
@@ -82,7 +90,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 import Search from '~/components/Search.vue';
 import Cart from '~/components/Cart.vue';
 
@@ -115,18 +123,23 @@ export default {
   },
   computed: {
     ...mapGetters({
-      qtdProducts: 'cart/qtdProducts',
+      qtdProducts: 'cart/qtdProductsState',
     }),
   },
   watch: {
     qtdProducts(newTotal) {
-      return (this.qtdCart = Number(newTotal) ?? '0');
+      return (this.qtdCart = newTotal.toString() ?? '0');
     },
+  },
+  methods: {
+    ...mapActions({
+      clearAllProducts: 'cart/clearAllProducts',
+    }),
   },
 };
 </script>
 
-<style scoped>
+<style >
 .layout-default .v-list-item__action,
 .layout-default .v-list-item__title {
   margin-top: 1px !important;
@@ -141,18 +154,8 @@ export default {
 }
 
 .layout-default .default-layout__btn-cart .v-badge__badge {
-  border-radius: 10px;
-  color: #fff;
-  display: inline-block;
-  font-size: 10px !important;
-  height: 10px;
-  line-height: 1;
-  min-width: 10px !important;
-  padding: 4px 6px;
-  pointer-events: auto;
-  position: absolute;
-  top: auto;
-  transition: 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
-  white-space: nowrap;
+  font-size: 9px !important;
+  height: 17px !important;
+  min-width: 17px !important;
 }
 </style>
