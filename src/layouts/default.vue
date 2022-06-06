@@ -139,7 +139,7 @@ export default {
 };
 </script>
 
-<style >
+<style>
 .layout-default .v-list-item__action,
 .layout-default .v-list-item__title {
   margin-top: 1px !important;

@@ -29,6 +29,18 @@ const items = [
   },
 ];
 
+const sumCartProducts = (products, prop) => {
+  let value = 0;
+
+  if (products.length > 0) {
+    products.forEach((product) => {
+      value += Number(product[prop]);
+    });
+  }
+
+  return value;
+};
+
 export const cart = {
   namespaced: true,
 
@@ -72,17 +84,13 @@ export const cart = {
       state.qtdProducts = 0;
       state.totalProducts = 0;
     },
-    setSumCartProducts(state, { qtd, total }) {
-      state.qtdProducts = qtd;
-      state.totalProducts = total;
-    },
   },
 
   getters: {
     productsState: (state) => state.products,
     qtdProducts: (state) => Object.keys(state.products).length,
-    qtdProductsState: (state) => state.qtdProducts,
-    totalProductsState: (state) => state.totalProducts,
+    qtdProductsState: (state) => sumCartProducts(state.products, 'qtd'),
+    totalProductsState: (state) => sumCartProducts(state.products, 'total'),
     itemsState: (state) => state.items,
   },
 
@@ -92,14 +100,12 @@ export const cart = {
       if (!(await dispatch('productExistCart', product))) {
         const prod = { ...product, qtd: 1, total: product.price };
         commit('setProduct', prod);
-        dispatch('sumCartProducts');
       }
     },
 
-    removeProduct({ state, commit, dispatch }, productId) {
+    removeProduct({ state, commit }, productId) {
       const products = state.products.filter((product) => product.id !== productId);
       commit('updateProducts', products);
-      dispatch('sumCartProducts');
     },
 
     clearAllProducts({ commit }) {
@@ -110,22 +116,8 @@ export const cart = {
       return state.products.find(({ id }) => id === product.id);
     },
 
-    decraseOrIncreaseProduct({ commit, dispatch }, { product, type }) {
+    decraseOrIncreaseProduct({ commit }, { product, type }) {
       commit('updateDecOrIncProduct', { product, type });
-      dispatch('sumCartProducts');
-    },
-
-    sumCartProducts({ state, commit }) {
-      let qtd = 0;
-      let total = 0;
-      if (state.products.length > 0) {
-        state.products.forEach((product) => {
-          qtd += Number(product.qtd);
-          total += Number(product.total);
-        });
-
-        commit('setSumCartProducts', { qtd, total });
-      }
     },
   },
 };
