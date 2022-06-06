@@ -17,7 +17,7 @@
 import { mapActions } from 'vuex';
 
 export default {
-  name: 'CardProduct',
+  name: 'ProductCard',
 
   props: {
     product: {
