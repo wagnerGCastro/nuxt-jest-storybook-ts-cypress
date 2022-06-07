@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProductCard - unit should match snapshot 1`] = `
+<div
+  class="card-product v-card v-sheet theme--light"
+>
+  <div
+    class="v-image v-responsive theme--light"
+  >
+    <transition-stub
+      mode="in-out"
+      name="fade-transition"
+    >
+      <div
+        class="v-image__image v-image__image--preload v-image__image--cover"
+        style="background-image: url(https://picsum.photos/id/11/10/6); background-position: center center;"
+      />
+    </transition-stub>
+    <div
+      class="v-responsive__content"
+    />
+  </div>
+   
+  <div
+    class="v-card__actions vcard-actions"
+  >
+    <button
+      class="cart-btn v-btn v-btn--is-elevated v-btn--has-bg theme--light v-size--default primary"
+      type="button"
+    >
+      <span
+        class="v-btn__content"
+      >
+        <i
+          aria-hidden="true"
+          class="v-icon notranslate icon v-icon--dense mdi mdi-cart-outline theme--light"
+        />
+      </span>
+    </button>
+  </div>
+   
+  <div
+    class="v-card__title headline"
+  >
+    Relógio Bonito
+  </div>
+   
+  <div
+    class="v-card__text"
+  >
+    R$ 23.00
+  </div>
+</div>
+`;
