@@ -4,8 +4,14 @@ module.exports = {
     browser: true,
     node: true,
   },
-  extends: ['@nuxtjs/eslint-config-typescript', 'plugin:nuxt/recommended', 'prettier'],
-  plugins: [],
+  extends: [
+    '@nuxtjs/eslint-config-typescript',
+    'plugin:nuxt/recommended',
+    'prettier',
+    'plugin:prettier/recommended',
+    'plugin:cypress/recommended',
+  ],
+  plugins: ['prettier', 'cypress'],
   // add your custom rules here
   rules: {
     '@typescript-eslint/no-namespace': 'off',
@@ -16,11 +22,6 @@ module.exports = {
         order: ['template', 'script', 'style'],
       },
     ],
-    'vue/multi-word-component-names': [
-      'error',
-      {
-        ignores: ['Search', 'Cart'],
-      },
-    ],
+    'vue/multi-word-component-names': 'off',
   },
 };
