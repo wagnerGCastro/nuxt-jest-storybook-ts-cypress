@@ -64,6 +64,10 @@ export default {
   padding-bottom: 5px !important;
 }
 
+.card-product .v-image {
+  height: 9rem !important;
+}
+
 .card-product .vcard-actions {
   margin: -30px -41px 0 78%;
   display: flex;

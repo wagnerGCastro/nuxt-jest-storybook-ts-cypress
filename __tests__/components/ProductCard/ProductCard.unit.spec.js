@@ -2,8 +2,6 @@ import Vuetify from 'vuetify';
 import { mount } from '@vue/test-utils';
 import ProductCard from '@/components/ProductCard';
 
-// const vuetify = new Vuetify();
-
 describe('ProductCard - unit', () => {
   let vuetify;
 
@@ -17,7 +15,7 @@ describe('ProductCard - unit', () => {
       propsData: { product: {} },
     });
 
-    console.log(wrapper.html());
+    // console.log(wrapper.html());
 
     expect(wrapper.vm).toBeDefined();
   });

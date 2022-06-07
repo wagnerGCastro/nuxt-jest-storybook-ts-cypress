@@ -2,3 +2,6 @@
 !.jest
 
 __cypress__/support/index.d.ts
+
+public/images
+*.svg
