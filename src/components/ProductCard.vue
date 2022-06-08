@@ -3,7 +3,7 @@
     <v-img lazy-src="https://picsum.photos/id/11/10/6" :src="product.image"></v-img>
 
     <v-card-actions class="vcard-actions">
-      <v-btn class="cart-btn" color="primary" nuxt @click.prevent="addToCart">
+      <v-btn class="cart-btn" color="primary" nuxt @click.prevent="addToCartEmitted">
         <v-icon dense class="icon">mdi-cart-outline</v-icon>
       </v-btn>
     </v-card-actions>
@@ -51,6 +51,10 @@ export default {
 
     addToCart() {
       this.addProduct(this.product);
+    },
+
+    addToCartEmitted() {
+      this.$emit('addToCartEmitted', { product: this.product });
     },
   },
 };

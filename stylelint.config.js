@@ -5,7 +5,7 @@ module.exports = {
     'stylelint-config-recommended-vue',
     'stylelint-config-prettier',
   ],
-  ignoreFiles: ['src/static/**', 'public/**'],
+  ignoreFiles: ['src/static/**', 'public/**', '__tests__/**/__snapshots__/**'],
   // add your custom config here
   // https://stylelint.io/user-guide/configuration
   rules: {
