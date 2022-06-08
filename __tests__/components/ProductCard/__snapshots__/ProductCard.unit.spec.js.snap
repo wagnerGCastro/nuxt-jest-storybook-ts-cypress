@@ -20,7 +20,7 @@ exports[`ProductCard - unit should match snapshot 1`] = `
       class="v-responsive__content"
     />
   </div>
-
+   
   <div
     class="v-card__actions vcard-actions"
   >
@@ -38,13 +38,13 @@ exports[`ProductCard - unit should match snapshot 1`] = `
       </span>
     </button>
   </div>
-
+   
   <div
     class="v-card__title headline"
   >
     Relógio Bonito
   </div>
-
+   
   <div
     class="v-card__text"
   >
