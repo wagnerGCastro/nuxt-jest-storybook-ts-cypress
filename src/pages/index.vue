@@ -1,9 +1,11 @@
 <template>
-  <v-row class="index-application">
+  <v-row v-if="errorMessage === ''" class="index-application">
     <v-col v-for="(prod, i) in products" :key="i" cols="12" sm="4" md="3">
       <product-card :product="prod" />
     </v-col>
   </v-row>
+
+  <h3 v-else class="text-center">{{ errorMessage }}</h3>
 </template>
 
 <script>
@@ -19,7 +21,6 @@ export default {
     return {
       products: [],
       errorMessage: '',
-      searchTerm: '',
     };
   },
   // computed: {
