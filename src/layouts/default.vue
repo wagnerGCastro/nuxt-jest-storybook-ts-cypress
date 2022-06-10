@@ -92,13 +92,8 @@ export default {
         },
         {
           icon: 'mdi-chart-bubble',
-          title: 'Inspire',
+          title: 'Checkout',
           to: '/inspire',
-        },
-        {
-          icon: 'mdi-chart-bubble',
-          title: 'Products',
-          to: '/product',
         },
       ],
       miniVariant: false,
@@ -111,22 +106,20 @@ export default {
 </script>
 
 <style scoped>
-.layout-default .v-list {
-  padding: 8px 0;
+.layout-default .v-list-item__action,
+.layout-default .v-list-item__title {
+  margin-top: 1px !important;
+  margin-bottom: 1px !important;
 }
 
-.v-list-item__action {
-  margin: 1px;
-}
-
-.default-layout__btn-cart {
+.layout-default .default-layout__btn-cart {
   border: 1px solid #aaa;
   margin-right: -5px !important;
   height: 38px !important;
   width: 38px !important;
 }
 
-.v-badge__badge {
+.layout-default .default-layout__btn-cart .v-badge__badge {
   border-radius: 10px;
   color: #fff;
   display: inline-block;

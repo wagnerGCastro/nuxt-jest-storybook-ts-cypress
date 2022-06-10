@@ -1,5 +1,5 @@
 <template>
-  <div class="cart">
+  <div class="component-cart">
     <hr class="space-hr mb-6" />
 
     <v-row v-for="(p, idx) in 5" :key="idx" no-gutters class="mb-3">
@@ -89,21 +89,21 @@ export default {
 </script>
 
 <style scoped>
-.cart {
+.component-cart {
   padding: 0 16px;
 }
 
-.cart .decrase,
-.cart .plus {
+.component-cart .decrase,
+.component-cart .plus {
   width: 20px;
   color: #939393;
 }
 
-.cart .box-image {
+.component-cart .box-image {
   position: relative;
 }
 
-.remove-product {
+.component-cart .remove-product {
   position: absolute;
   top: -7px;
   border: 1px solid #988;
@@ -116,41 +116,41 @@ export default {
   color: #939393;
 }
 
-.remove-product:hover {
+.component-cart .remove-product:hover {
   border: 1px solid #494242;
   color: #494242;
 }
 
-.v-btn__button {
+.component-cart .v-btn__button {
   width: 100%;
 }
 
-.title-product {
+.component-cart .title-product {
   font-size: 12px;
   font-weight: 400;
 }
 
-.price {
+.component-cart .price {
   font-size: 14px;
   min-width: 60px;
   text-align: right;
   font-weight: 500;
 }
 
-.quantity {
+.component-cart .quantity {
   font-size: 14px;
 }
 
-.space-hr {
+.component-cart .space-hr {
   margin: auto 0 20px;
   opacity: 0.3;
 }
 
-.subtotal-price {
+.component-cart .subtotal-price {
   color: blue;
 }
 
-.text-xs {
+.component-cart .text-xs {
   font-size: 12px;
   margin-right: 3px;
 }
