@@ -1,6 +1,9 @@
 export default {
   srcDir: 'src/',
   buildDir: 'dist',
+  dir: {
+    static: '../public',
+  },
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
