@@ -94,8 +94,6 @@ export default {
   data() {
     return {
       sumProducts: [],
-      productsTemp: [],
-      quantity: 1,
     };
   },
   computed: {
@@ -109,8 +107,6 @@ export default {
       this.sumProducts = newPrd;
     },
   },
-  created() {},
-
   methods: {
     ...mapActions({
       decraseOrIncreaseProduct: 'cart/decraseOrIncreaseProduct',
