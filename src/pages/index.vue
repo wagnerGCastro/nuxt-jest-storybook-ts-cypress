@@ -1,19 +1,19 @@
 <template>
   <v-row align="center">
     <v-col v-for="(prod, i) in products" :key="i" cols="12" sm="4" md="3">
-      <card-product :product="prod" />
+      <product-card :product="prod" />
     </v-col>
   </v-row>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
-import CardProduct from '@/components/CardProduct';
+import ProductCard from '@/components/ProductCard';
 
 export default {
   name: 'PageProduct',
   components: {
-    CardProduct,
+    ProductCard,
   },
   data() {
     return {
@@ -26,9 +26,5 @@ export default {
       products: 'cart/itemsState',
     }),
   },
-  created() {
-    // console.log('items', this.products);
-  },
-  methods: {},
 };
 </script>

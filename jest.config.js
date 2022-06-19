@@ -3,7 +3,9 @@ module.exports = {
     '^@/(.*)$': '<rootDir>/src/$1',
     '^~/(.*)$': '<rootDir>/src/$1',
     '^vue$': 'vue/dist/vue.common.js',
+    '#app': '@nuxt/bridge/dist/runtime/index',
   },
+  setupFiles: ['<rootDir>/.jest/setupFiles.js'],
   moduleFileExtensions: ['ts', 'js', 'vue', 'json'],
   testMatch: ['<rootDir>/__tests__/**/*.{spec,test}.{js,ts}'],
   transform: {
